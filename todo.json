@@ -1,0 +1,89 @@
+{
+  "firstSet": [
+    {
+      "name": "Initialize Project & Tailwind CSS",
+      "description": "Set up the base project using Vite (React + TypeScript template) and integrate Tailwind CSS for styling. This includes creating the Vite project structure, installing Tailwind and PostCSS as needed, and configuring `tailwind.config.js` and importing Tailwind directives (base, components, utilities) in the main CSS file (e.g., `src/index.css`). Verify that the React app runs and Tailwind styles are applied (for example, test a Tailwind class on a component). Also initialize the project repository structure (src/ folder, etc.). This task creates the foundational files like `index.html`, `src/main.tsx` (or index.tsx) to render `<App />`, and ensures Tailwind is ready to use. No app-specific logic here, just environment setup.",
+      "dependencies": [],
+      "status": "todo"
+    },
+    {
+      "name": "Define TypeScript Interfaces (Data Models)",
+      "description": "Create a TypeScript module defining the data models for the app. For example, create a file `src/models/types.ts` (or similar) that exports interfaces for Author, Post, and Preferences as described in the PRD. Include fields: Author (id, name, bio, avatarUrl, prefs), Preferences (theme, fontSize), Post (id, title, body, authorId, createdAt, updatedAt). These interfaces will be used across the app to ensure type consistency. No implementation logic – just type definitions. This task produces the contract that other tasks (like dataService and components) will import.",
+      "dependencies": [],
+      "status": "todo"
+    },
+    {
+      "name": "Implement LocalStorage DataService",
+      "description": "Create `src/services/dataService.ts` containing functions to manage authors and posts in localStorage. Implement CRUD operations using the keys `'authors'` and `'posts'` in localStorage. Functions should include: `getAuthors()` -> returns Author[], `getPosts()` -> returns Post[], `getPostById(id)`, `getAuthorById(id)` (optional helper), `createAuthor(authorData)` -> saves a new Author (assign new id and default prefs) to localStorage, `updateAuthor(id, updates)` -> updates an existing Author (used for preferences), `createPost(postData)` -> assigns new id, timestamps and saves a new Post, `updatePost(id, updates)` -> updates an existing Post's fields and timestamp. Use `JSON.stringify`/`JSON.parse` for storage. Ensure the module handles empty initial state (if localStorage has no 'authors' or 'posts', initialize them as empty arrays). This task should **not** implement any UI – just the data logic. It will import the interfaces from the models file for type-checking. Other parts of the app will import these functions to interact with storage.",
+      "dependencies": [
+        "Define TypeScript Interfaces (Data Models)"
+      ],
+      "status": "todo"
+    },
+    {
+      "name": "Configure Routing & Navigation",
+      "description": "Implement the routing structure of the app using React Router. Update `src/App.tsx` (or create it if not exists) to include a `<BrowserRouter>` with routes for all pages: '/', '/authors/new', '/posts/new', '/posts/:postId/edit', '/authors/:authorId/preferences'. For now, use placeholder or empty components for each page (you can create stub components in `src/pages/` directory, e.g., `LandingPage.tsx`, `CreateAuthorPage.tsx`, etc., returning simple JSX like a heading, so that routing can be tested). Also implement a basic navigation menu or links as needed: for example, in App or a header component, put links or buttons to navigate to the main pages (Landing, Create Author, Create Post) so a user can reach them. Ensure that the Router is properly configured to render the correct component for each route. This task sets up the scaffold so when pages are implemented, they plug into this routing. It may involve creating minimal files: `src/pages/LandingPage.tsx` (etc.) with a placeholder content (to be filled by later tasks). Verify that clicking links or manually visiting routes switches pages without full reload. Tailwind can be used to style the nav (optional).",
+      "dependencies": [
+        "Initialize Project & Tailwind CSS"
+      ],
+      "status": "todo"
+    }
+  ],
+  "secondSet": [
+    {
+      "name": "Implement Landing Page (Post List & Filters)",
+      "description": "Develop the Landing page in `src/pages/LandingPage.tsx`. This component will list all blog posts and provide filtering by author and date. Use the dataService to fetch data: on component mount, call `getPosts()` to retrieve posts and `getAuthors()` to retrieve authors (for filter options). Store these in state. Render the list of posts: for each post, display its title, author name (lookup via authors list), and possibly an excerpt of body and date. Implement filter controls: a dropdown to select author, and a toggle or checkbox to filter recent posts. When filters change, update state and filter the displayed posts accordingly. Include a button/link to navigate to the Create Post page and possibly to Create Author. For each post entry, include an Edit link. Use Tailwind CSS for styling. Handle the case of no posts. This task should import and use `dataService` functions and not directly manipulate localStorage.",
+      "dependencies": [
+        "Implement LocalStorage DataService",
+        "Define TypeScript Interfaces (Data Models)",
+        "Configure Routing & Navigation",
+        "Initialize Project & Tailwind CSS"
+      ],
+      "status": "todo"
+    },
+    {
+      "name": "Implement Create Author Page",
+      "description": "Develop the Create Author form in `src/pages/CreateAuthorPage.tsx`. Inputs for name, bio, and avatar URL. Validate required fields and create author via `dataService.createAuthor`. After creation, navigate to the Landing page. Style the form with Tailwind. Provide a Cancel button to return without saving.",
+      "dependencies": [
+        "Implement LocalStorage DataService",
+        "Define TypeScript Interfaces (Data Models)",
+        "Configure Routing & Navigation",
+        "Initialize Project & Tailwind CSS"
+      ],
+      "status": "todo"
+    },
+    {
+      "name": "Implement Create Post Page",
+      "description": "Develop the page `src/pages/CreatePostPage.tsx` to add new posts. Fetch authors for a dropdown. Validate title, body, and author selection. Create the post via `dataService.createPost` and navigate back to the Landing page. Provide cancel behavior. Style with Tailwind.",
+      "dependencies": [
+        "Implement LocalStorage DataService",
+        "Define TypeScript Interfaces (Data Models)",
+        "Configure Routing & Navigation",
+        "Initialize Project & Tailwind CSS"
+      ],
+      "status": "todo"
+    },
+    {
+      "name": "Implement Edit Post Page",
+      "description": "Create `src/pages/EditPostPage.tsx` to edit existing posts. Load the post by id from route params using `getPostById`, fetch authors list, and populate the form. On submit, update the post via `updatePost` and navigate back to Landing. Handle invalid ids gracefully. Style with Tailwind.",
+      "dependencies": [
+        "Implement LocalStorage DataService",
+        "Define TypeScript Interfaces (Data Models)",
+        "Configure Routing & Navigation",
+        "Initialize Project & Tailwind CSS"
+      ],
+      "status": "todo"
+    },
+    {
+      "name": "Implement Author Preferences Page",
+      "description": "Create `src/pages/AuthorPreferencesPage.tsx` for editing an author's theme and font size preferences. Load the author by id, show form controls, and save via `updateAuthor`. After saving, navigate back to Landing. Style the form with Tailwind.",
+      "dependencies": [
+        "Implement LocalStorage DataService",
+        "Define TypeScript Interfaces (Data Models)",
+        "Configure Routing & Navigation",
+        "Initialize Project & Tailwind CSS"
+      ],
+      "status": "todo"
+    }
+  ]
+}
