@@ -4,7 +4,7 @@
       "name": "Initialize Project & Tailwind CSS",
       "description": "Set up the base project using Vite (React + TypeScript template) and integrate Tailwind CSS for styling. This includes creating the Vite project structure, installing Tailwind and PostCSS as needed, and configuring `tailwind.config.js` and importing Tailwind directives (base, components, utilities) in the main CSS file (e.g., `src/index.css`). Verify that the React app runs and Tailwind styles are applied (for example, test a Tailwind class on a component). Also initialize the project repository structure (src/ folder, etc.). This task creates the foundational files like `index.html`, `src/main.tsx` (or index.tsx) to render `<App />`, and ensures Tailwind is ready to use. No app-specific logic here, just environment setup.",
       "dependencies": [],
-      "status": "todo"
+      "status": "done"
     },
     {
       "name": "Define TypeScript Interfaces (Data Models)",
